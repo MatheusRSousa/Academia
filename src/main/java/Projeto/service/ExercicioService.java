@@ -21,7 +21,7 @@ public class ExercicioService {
 		return repository.findAll();
 	}
 	
-	public Optional<Exercicio> findByExercicios(Long id){
+	public Optional<Exercicio> findByExercicio(Long id){
 		return repository.findById(id);
 	}
 	
@@ -39,5 +39,9 @@ public class ExercicioService {
 	
 	public void deleteExercicio(Long id) {
 		repository.deleteById(id);
+	}
+	
+	public List<Exercicio> findByAllExercicios(List<Long> ids){
+		return repository.findAllById(ids);
 	}
 }

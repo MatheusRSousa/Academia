@@ -36,10 +36,13 @@ public class Aluno {
 	@Email
 	private String email;
 	
+	
+	@Column(nullable = true)
 	@ManyToMany
 	private List<Exercicio> exercicios;
 	
 
+	
 	public Aluno() {
 		super();
 	}
@@ -51,6 +54,17 @@ public class Aluno {
 		this.cpf = cpf;
 		this.password = senha;
 		this.email = email;
+	}
+
+
+
+	public List<Exercicio> getExercicios() {
+		return exercicios;
+	}
+
+
+	public void setExercicios(List<Exercicio> exercicios) {
+		this.exercicios = exercicios;
 	}
 
 
@@ -103,16 +117,5 @@ public class Aluno {
 		this.email = email;
 	}
 
-
-	public List<Exercicio> getTreino() {
-		return exercicios;
-	}
-
-
-	public void setTreino(List<Exercicio> exercicios) {
-		this.exercicios = exercicios;
-	}
-
-	
 	
 }

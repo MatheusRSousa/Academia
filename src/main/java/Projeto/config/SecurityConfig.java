@@ -31,7 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private UserDetailsService userService;
 	
 	public static final String[] PUBLIC_MATCHERS = {
-		"/swagger-ui.html#/"
+			"/", "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/swagger-resources/**",
+			"/configuration/security", "/swagger-ui.html", "/webjars/**"
 	};
 	
 	@Override
@@ -41,6 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.csrf().disable()
 			.authorizeRequests()
 			.antMatchers(HttpMethod.POST, "/login").permitAll()
+			.antMatchers(PUBLIC_MATCHERS).permitAll()
+			.anyRequest().authenticated()
 			.and()
 			.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil))
 			.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userService))

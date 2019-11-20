@@ -1,5 +1,7 @@
 package Projeto.models;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,14 +31,12 @@ public class Funcionario {
 	@Email
 	private String email;
 	
-
 	private TipoUsuario tipoUsuario;
 	
-	
-
 	public Funcionario() {
 		super();
 	}
+
 
 	public Funcionario(String nome, String cpf, String senha, String email, TipoUsuario tipoUsuario)  {
 		this.nome = nome;

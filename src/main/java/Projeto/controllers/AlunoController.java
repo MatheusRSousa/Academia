@@ -1,6 +1,7 @@
 package Projeto.controllers;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import Projeto.dtos.AdicionarAlunoDTO;
+import Projeto.dtos.AtualizarAlunoDTO;
 import Projeto.models.Aluno;
 import Projeto.service.AlunoService;
 
@@ -36,12 +39,12 @@ public class AlunoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Aluno> createAluno(@RequestBody Aluno aluno){
+	public ResponseEntity<Aluno> createAluno(@RequestBody AdicionarAlunoDTO aluno){
 		return new ResponseEntity<Aluno>(service.createAluno(aluno), HttpStatus.CREATED);
 	}
 	
 	@PutMapping
-	public ResponseEntity<Aluno> updateAluno(@RequestBody Aluno aluno){
+	public ResponseEntity<Aluno> updateAluno(@RequestBody AtualizarAlunoDTO aluno){
 		return new ResponseEntity<Aluno>(service.updateAluno(aluno), HttpStatus.OK);
 	}
 	
@@ -49,4 +52,6 @@ public class AlunoController {
 	public void deleteAluno(@PathVariable Long id) {
 		service.deleteAluno(id);
 	}
+	
+
 }

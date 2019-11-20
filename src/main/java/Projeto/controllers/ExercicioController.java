@@ -32,7 +32,7 @@ public class ExercicioController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Exercicio>> findByExercicio(@PathVariable Long id){
-		return new ResponseEntity<Optional<Exercicio>>(service.findByExercicios(id), HttpStatus.OK);
+		return new ResponseEntity<Optional<Exercicio>>(service.findByExercicio(id), HttpStatus.OK);
 	}
 	
 	@PostMapping
