@@ -1,8 +1,9 @@
 package Projeto.models;
 
-public enum TipoUsuario {
+
+public enum TipoUsuario{
 	
-	COMUM(1, "ROLE_COMUN"), PROFESSOR(2, "ROLE_PROFESSOR"), ADMIN(3, "ROLE_ADMIN");
+	COMUM(1,"ROLE_COMUM"),PROFESSOR(2,"ROLE_PROFESSOR"),ADMIN(3,"ROLE_ADMIN");
 	
 	private int cod;
 	private String descricao;
@@ -32,4 +33,5 @@ public enum TipoUsuario {
 
 		throw new IllegalArgumentException("Id Invalido: " + cod);
 	}
+	
 }

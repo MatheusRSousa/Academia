@@ -2,14 +2,23 @@ package Projeto.models;
 
 
 
+import java.util.HashSet;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.br.CPF;
+
 
 @Entity
 public class Funcionario {
@@ -31,19 +40,30 @@ public class Funcionario {
 	@Email
 	private String email;
 	
-	private TipoUsuario tipoUsuario;
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="Permissao_Func")
+	private Set<Integer> tipo = new HashSet<Integer>();
+	
 	
 	public Funcionario() {
 		super();
 	}
 
 
-	public Funcionario(String nome, String cpf, String senha, String email, TipoUsuario tipoUsuario)  {
+	public Funcionario(String nome, String cpf, String senha, String email, Set<Integer> tipoUsuario)  {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.password = senha;
 		this.email = email;
-		this.tipoUsuario = tipoUsuario;
+		this.tipo = tipoUsuario;
+	}
+	
+	public Set<TipoUsuario> getTipo() {
+		return tipo.stream().map(x -> TipoUsuario.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addTipo(TipoUsuario tipo) {
+		this.tipo.add(tipo.getCod());
 	}
 
 	public long getMatricula() {
@@ -86,12 +106,5 @@ public class Funcionario {
 		this.email = email;
 	}
 
-	public TipoUsuario getTipoUsuario() {
-		return tipoUsuario;
-	}
-
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
 	
 }

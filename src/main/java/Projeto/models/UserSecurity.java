@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserSecurity implements UserDetails{
 
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String email;
@@ -72,6 +72,5 @@ private static final long serialVersionUID = 1L;
 	public boolean hasRole(TipoUsuario user) {
 		return getAuthorities().contains(new SimpleGrantedAuthority(user.getDescricao()));
 	}
-	
 
 }

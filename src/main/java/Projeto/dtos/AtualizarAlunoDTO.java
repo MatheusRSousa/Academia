@@ -3,8 +3,6 @@ package Projeto.dtos;
 import java.util.List;
 
 public class AtualizarAlunoDTO {
-	
-	private long matricula;
 
 	private String nome;
 	
@@ -14,14 +12,6 @@ public class AtualizarAlunoDTO {
 	
 	private List<Long> idsExercicio;
 	
-
-	public long getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(long matricula) {
-		this.matricula = matricula;
-	}
 
 	public String getNome() {
 		return nome;

@@ -35,6 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/configuration/security", "/swagger-ui.html", "/webjars/**"
 	};
 	
+	public static final String[] ACESSAR_TUDO = {
+		"/professor", "/aluno", "/exercicio"	
+	};
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().configurationSource(configurationSource())

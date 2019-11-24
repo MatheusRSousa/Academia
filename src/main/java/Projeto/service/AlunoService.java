@@ -1,5 +1,6 @@
 package Projeto.service;
 
+
 import java.util.List;
 
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import Projeto.dtos.AdicionarAlunoDTO;
 import Projeto.dtos.AtualizarAlunoDTO;
 import Projeto.models.Aluno;
+import Projeto.models.Presenca;
 import Projeto.repository.AlunoRepository;
 
 @Service
@@ -23,7 +25,8 @@ public class AlunoService {
 	@Autowired
 	ExercicioService eService;
 	
-
+	@Autowired
+	PresencaService pService;
 	
 	@Autowired
 	private BCryptPasswordEncoder cryp;
@@ -47,9 +50,9 @@ public class AlunoService {
 		return aluno2;
 	}
 	
-	public Aluno updateAluno(AtualizarAlunoDTO aluno1) {
-		 if(repository.existsById(aluno1.getMatricula())){
-				Aluno aluno2 = repository.findById(aluno1.getMatricula()).get();
+	public Aluno updateAluno(Long id, AtualizarAlunoDTO aluno1) {
+		 if(repository.existsById(id)){
+				Aluno aluno2 = repository.findById(id).get();
 				aluno2.setEmail(aluno1.getEmail() == null ? aluno2.getEmail() : aluno1.getEmail());
 				aluno2.setNome(aluno1.getNome() == null ? aluno2.getNome() : aluno1.getNome());
 				aluno2.getExercicios().addAll(eService.findByAllExercicios(aluno1.getIdsExercicio()));
@@ -71,6 +74,16 @@ public class AlunoService {
 	private Aluno getAlunoSenhaCript(Aluno aluno) {
 		Aluno aux = new Aluno(aluno.getNome(),aluno.getCpf(),cryp.encode(aluno.getPassword()),aluno.getEmail());
 		return aux;
+	}
+	
+	public Aluno addFrequenciaAluno(Long id, Presenca presenca) {
+		if(repository.existsById(id)) {
+			Aluno aluno = repository.findById(id).get();
+			pService.addPresenca(presenca);
+			aluno.getPresencas().add(presenca);
+			return repository.save(aluno);
+		}
+		return null;
 	}
 	
 }

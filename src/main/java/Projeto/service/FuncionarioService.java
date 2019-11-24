@@ -31,9 +31,10 @@ public class FuncionarioService {
 	}
 	
 	public Funcionario createFuncionario(Funcionario funcionario) {
-		Funcionario fun = getFuncionarioSenhaCript(funcionario);
-		repository.save(fun);
-		return fun;
+		String fun = getFuncionarioSenhaCript(funcionario.getPassword());
+		funcionario.setPassword(fun);
+		repository.save(funcionario);
+		return funcionario;
 	}
 	
 	public Funcionario updateFuncionario(Funcionario funcionario) {
@@ -51,9 +52,9 @@ public class FuncionarioService {
 		return repository.findByEmail(email);
 	}
 
-	private Funcionario getFuncionarioSenhaCript(Funcionario funcionario) {
-		Funcionario aux = new Funcionario(funcionario.getNome(),funcionario.getCpf(),
-				cryp.encode(funcionario.getPassword()),funcionario.getEmail(), funcionario.getTipoUsuario());
-		return aux;
+	private String getFuncionarioSenhaCript(String senha) {
+		String passowrd = cryp.encode(senha);
+				
+		return passowrd;
 	}
 }
