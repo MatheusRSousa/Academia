@@ -34,10 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/", "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/swagger-resources/**",
 			"/configuration/security", "/swagger-ui.html", "/webjars/**"
 	};
-	
-	public static final String[] ACESSAR_TUDO = {
-		"/professor", "/aluno", "/exercicio"	
-	};
+
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
