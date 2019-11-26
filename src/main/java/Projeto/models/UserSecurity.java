@@ -24,10 +24,8 @@ public class UserSecurity implements UserDetails{
 
 
 	public UserSecurity(Long id, String email, String senha, Set<TipoUsuario> perfil) {
-<<<<<<< HEAD
 		super();
-=======
->>>>>>> 0c48123bff91bee93e95fc9d9c9d409cd165f898
+
 		this.id = id;
 		this.email = email;
 		this.senha = senha;

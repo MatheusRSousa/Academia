@@ -36,12 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/", "/v2/api-docs", "/configuration/ui", "/swagger-resources", "/swagger-resources/**",
 			"/configuration/security", "/swagger-ui.html", "/webjars/**"
 	};
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 0c48123bff91bee93e95fc9d9c9d409cd165f898
-	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().configurationSource(configurationSource())
