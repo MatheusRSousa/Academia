@@ -40,7 +40,6 @@ public class FuncionarioController {
 		return new ResponseEntity<Optional<Funcionario>>(service.findByFuncionario(id), HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping
 	public ResponseEntity<Funcionario> createFuncionario(@RequestBody Funcionario funcionario){
 		return new ResponseEntity<Funcionario>(service.createFuncionario(funcionario), HttpStatus.CREATED);

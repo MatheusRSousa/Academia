@@ -1,5 +1,7 @@
 package Projeto.config;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,9 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			"/configuration/security", "/swagger-ui.html", "/webjars/**"
 	};
 	
-	public static final String[] ACESSAR_TUDO = {
-		"/professor", "/aluno", "/exercicio"	
-	};
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

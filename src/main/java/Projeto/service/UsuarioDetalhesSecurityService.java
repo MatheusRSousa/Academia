@@ -29,8 +29,8 @@ public class UsuarioDetalhesSecurityService implements UserDetailsService{
 			throw new UsernameNotFoundException(email);
 		}
 		if(aluno != null) {
-			return new UserSecurity(aluno.getMatricula(), aluno.getEmail(), aluno.getPassword());
+			return new UserSecurity(aluno.getMatricula(), aluno.getEmail(), aluno.getPassword(),aluno.getTipo());
 		}
-		return new UserSecurity(funcionario.getMatricula(), funcionario.getEmail(), funcionario.getPassword());
+		return new UserSecurity(funcionario.getMatricula(), funcionario.getEmail(), funcionario.getPassword(),funcionario.getTipo());
 	}
 }

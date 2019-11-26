@@ -1,6 +1,8 @@
 package Projeto.models;
 
 import java.util.Collection;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,11 +23,12 @@ public class UserSecurity implements UserDetails{
 	}
 
 
-	public UserSecurity(Long id, String email, String senha) {
+	public UserSecurity(Long id, String email, String senha, Set<TipoUsuario> perfil) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.senha = senha;
+		this.authorities = perfil.stream().map(x -> new SimpleGrantedAuthority(x.getDescricao())).collect(Collectors.toSet());
 	}
 
 
